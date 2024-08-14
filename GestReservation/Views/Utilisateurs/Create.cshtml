@@ -1,0 +1,77 @@
+﻿@model GestReservation.Models.Utilisateur
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="mb-4">Create a New User</h1>
+
+<h4 class="mb-3">User Details</h4>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form asp-action="Create" method="post" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Prenom" class="form-label"></label>
+                    <input asp-for="Prenom" class="form-control" placeholder="Enter your first name" />
+                    <span asp-validation-for="Prenom" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Nom" class="form-label"></label>
+                    <input asp-for="Nom" class="form-control" placeholder="Enter your last name" />
+                    <span asp-validation-for="Nom" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="MotDePass" class="form-label"></label>
+                    <input asp-for="MotDePass" type="password" class="form-control" placeholder="Enter your password" />
+                    <span asp-validation-for="MotDePass" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Image" class="form-label"></label>
+                    <input type="file" name="imageFile" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Roles" class="form-label"></label>
+                    <select asp-for="Roles" class="form-select" asp-items="@(ViewBag.Roles)">
+                        <option value="">Select Role</option>
+                    </select>
+                    <span asp-validation-for="Roles" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </form>
+
+            <div class="mt-4">
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

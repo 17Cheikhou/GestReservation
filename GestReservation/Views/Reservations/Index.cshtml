@@ -1,0 +1,130 @@
+﻿@model ReservationIndexViewModel
+
+@{
+    ViewData["Title"] = "Reservations";
+}
+
+<h1>Liste des Trajets</h1>
+
+<!-- Trajets Cards -->
+<div class="container">
+    <div class="row">
+        @foreach (var trajet in Model.Trajets)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@trajet.VilleDepart - @trajet.VilleArrive</h5>
+                        <p class="card-text">Départ: @trajet.DateDepart</p>
+                        <form asp-action="Reserve" method="post">
+                            <input type="hidden" name="trajetId" value="@trajet.TrajetId" />
+                            <button type="submit" class="btn btn-primary">Réserver</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Pagination for Trajets -->
+    <nav aria-label="Trajets pagination">
+        <ul class="pagination">
+            @if (Model.Trajets.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-trajetPage="@(Model.Trajets.CurrentPage - 1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+
+            @for (var i = 1; i <= Model.Trajets.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Trajets.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-trajetPage="@i">@i</a>
+                </li>
+            }
+
+            @if (Model.Trajets.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-trajetPage="@(Model.Trajets.CurrentPage + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+
+    <h1 class="mt-5">Mes Réservations</h1>
+
+    <!-- Reservations Table -->
+    <form method="get" asp-action="Index" class="form-inline mb-3">
+        <div class="input-group w-25">
+            <input type="text" name="searchString" class="form-control w-25" placeholder="Search Vehicles" value="@ViewData["CurrentFilter"]" />
+            <button type="submit" class="btn btn-primary ml-2">Search</button>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date de Réservation</th>
+                <th>Trajet</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservation in Model.Reservations)
+            {
+                <tr>
+                    <td>@reservation.DateReservation</td>
+                    <td>@reservation.Trajet.VilleDepart - @reservation.Trajet.VilleArrive</td>
+                    <td>
+                        <a href="@Url.Action("Details", "Reservations", new { id = reservation.ReservationId })" class="btn btn-info">Détails</a>
+                        <form asp-action="Delete" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@reservation.ReservationId" />
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination for Reservations -->
+    <nav aria-label="Reservations pagination">
+        <ul class="pagination">
+            @if (Model.Reservations.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.Reservations.CurrentPage - 1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+
+            @for (var i = 1; i <= Model.Reservations.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Reservations.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+                </li>
+            }
+
+            @if (Model.Reservations.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.Reservations.CurrentPage + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        swal("Erreur", "@TempData["ErrorMessage"]", "error");
+    </script>
+}

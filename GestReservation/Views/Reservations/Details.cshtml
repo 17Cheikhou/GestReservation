@@ -1,0 +1,35 @@
+﻿@model Reservation
+
+@{
+    ViewData["Title"] = "Détails de la Réservation";
+}
+
+<h1>Détails de la Réservation</h1>
+
+<div>
+    <h4>Réservation</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Date de Réservation
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DateReservation
+        </dd>
+        <dt class="col-sm-2">
+            Trajet
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Trajet.VilleDepart - @Model.Trajet.VilleArrive
+        </dd>
+        <dt class="col-sm-2">
+            Utilisateur
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Utilisateur.Prenom @Model.Utilisateur.Nom
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Retour à la liste</a>
+</div>

@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ReservationVoyage</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ReservationVoyage.styles.css" asp-append-version="true" />
+    <script src="~/js/site.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <style>
+
+    </style>
+
+</head>
+<body>
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid justify-content-between">
+            <!-- Left elements -->
+            <div class="d-flex">
+                <!-- Brand -->
+                <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="@Url.Action("Index", "Home")">
+                    KAAY ÑU DEM
+                </a>
+            </div>
+            <!-- Left elements -->
+            <!-- Center elements -->
+            <ul class="navbar-nav flex-row d-none d-md-flex">
+                <li class="nav-item me-3 me-lg-1 active">
+                    <a class="nav-link" href="@Url.Action("Index", "Utilisateurs")">Utilisateurs</a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a class="nav-link" href="@Url.Action("Index", "Vehicules")">Véhicules</a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a class="nav-link" href="@Url.Action("Index", "Trajets")">Trajets</a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a class="nav-link" href="@Url.Action("Index", "Reservations")">Réservations</a>
+                </li>
+            </ul>
+            <!-- Center elements -->
+            <!-- Right elements -->
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item me-3 me-lg-1">
+                    <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+                        <img src="https://mdbootstrap.com/img/new/avatars/1.webp"
+                             class="rounded-circle"
+                             height="22"
+                             alt=""
+                             loading="lazy" />
+                        <strong class="d-none d-sm-block ms-1">John</strong>
+                    </a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                    <a class="nav-link" href="#">
+                        <span><i class="fas fa-plus-circle fa-lg"></i></span>
+                    </a>
+                </li>
+                <li mdbDropdown class="nav-item dropdown me-3 me-lg-1">
+                    <a class="nav-link dropdown-toggle hidden-arrow"
+                       href="#"
+                       id="navbarDropdownMenuLink"
+                       role="button"
+                       mdbDropdownToggle
+                       aria-expanded="false">
+                        <i class="fas fa-comments fa-lg"></i>
+
+                        <span class="badge rounded-pill badge-notification bg-danger">6</span>
+                    </a>
+                    <ul mdbDropdownMenu
+                        class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </li>
+                <li mdbDropdown class="nav-item dropdown me-3 me-lg-1">
+                    <a class="nav-link dropdown-toggle hidden-arrow"
+                       href="#"
+                       id="navbarDropdownMenuLink"
+                       role="button"
+                       mdbDropdownToggle
+                       aria-expanded="false">
+                        <i class="fas fa-bell fa-lg"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">12</span>
+                    </a>
+                    <ul mdbDropdownMenu
+                        class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </li>
+                <li mdbDropdown class="nav-item dropdown me-3 me-lg-1">
+                    <a class="nav-link dropdown-toggle hidden-arrow"
+                       href="#"
+                       id="navbarDropdownMenuLink"
+                       role="button"
+                       mdbDropdownToggle
+                       aria-expanded="false">
+                        <i class="fas fa-chevron-circle-down fa-lg"></i>
+                    </a>
+                    <ul mdbDropdownMenu
+                        class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Right elements -->
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+
+    <main role="main" class="container mt-4">
+        @RenderBody()
+    </main>
+
+    <footer class="text-center text-lg-start bg-light text-muted mt-5">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>KAAY ÑU DEM
+                        </h6>
+                        <p>
+                            Our company aims to help people travel around cities quickly and without getting tired
+                        </p>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                                    Villes plus Visitee 
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Pikine</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Guédiawaye</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Rufisque</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Mbour</a>
+                        </p>
+                    </div>
+
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Useful links
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Renault</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Sonatel</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">TATA</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Dakar Deem Dik</a>
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Contact
+                        </h6>
+                        <p><i class="fas fa-home me-3"></i> Senegal, Rufisque</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            info@example.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> + 221 77 123 45 67</p>
+                        <p><i class="fas fa-phone me-3"></i> + 33 77 123 45 67</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+           AmadouWane&CheikhouMbaye © 2021 Copyright:
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body></html>

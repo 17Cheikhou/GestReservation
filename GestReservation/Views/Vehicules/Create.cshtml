@@ -1,0 +1,78 @@
+﻿@model GestReservation.Models.Vehicule
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="mb-4">Create a New Vehicle</h1>
+
+<h4 class="mb-3">Vehicle Details</h4>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form asp-action="Create" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Marque" class="form-label"></label>
+                    <select asp-for="Marque" class="form-select" asp-items="@(ViewBag.Marque)">
+                        <option value="">Select Marque</option>
+                    </select>
+                    <div class="text-danger">
+                        <span asp-validation-for="Marque"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Modele" class="form-label"></label>
+                    <input asp-for="Modele" class="form-control" placeholder="Enter the model" />
+                    <div class="text-danger">
+                        <span asp-validation-for="Modele"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Immatriculation" class="form-label"></label>
+                    <input asp-for="Immatriculation" class="form-control" placeholder="Enter the registration number" />
+                    <div class="text-danger">
+                        <span asp-validation-for="Immatriculation"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="UtilisateurId" class="form-label"></label>
+                    <select asp-for="UtilisateurId" class="form-select" asp-items="@(ViewBag.Utilisateurs as SelectList)">
+                        <option value="">Select User</option>
+                    </select>
+                    <div class="text-danger">
+                        <span asp-validation-for="UtilisateurId"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Image" class="form-label"></label>
+                    <input type="file" name="imageFile" class="form-control" />
+                    <div class="text-danger">
+                        <span asp-validation-for="Image"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

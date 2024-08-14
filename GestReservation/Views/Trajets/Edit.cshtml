@@ -1,0 +1,73 @@
+﻿@model GestReservation.Models.Trajet
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="mb-4">Edit Trajet</h1>
+
+<h4 class="mb-3">Edit Trajet Details</h4>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form asp-action="Edit" class="bg-light p-4 rounded shadow-sm">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="TrajetId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="VilleDepart" class="form-label"></label>
+                    <select asp-for="VilleDepart" class="form-select" asp-items="@(ViewBag.Villes)">
+                        <option value="">Select Departure City</option>
+                    </select>
+                    <div class="text-danger">
+                        <span asp-validation-for="VilleDepart"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="VilleArrive" class="form-label"></label>
+                    <select asp-for="VilleArrive" class="form-select" asp-items="@(ViewBag.Villes)">
+                        <option value="">Select Arrival City</option>
+                    </select>
+                    <div class="text-danger">
+                        <span asp-validation-for="VilleArrive"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DateDepart" class="form-label"></label>
+                    <input asp-for="DateDepart" type="date" class="form-control" />
+                    <div class="text-danger">
+                        <span asp-validation-for="DateDepart"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="UtilisateurId" class="form-label"></label>
+                    <select asp-for="UtilisateurId" class="form-select" asp-items="@(ViewBag.Utilisateurs as SelectList)">
+                        <option value="">Select User</option>
+                    </select>
+                    <div class="text-danger">
+                        <span asp-validation-for="UtilisateurId"></span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

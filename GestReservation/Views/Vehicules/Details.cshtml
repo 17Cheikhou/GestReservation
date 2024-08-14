@@ -1,0 +1,63 @@
+﻿@model GestReservation.Models.Vehicule
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-4">
+    <h1>Details</h1>
+
+    <div class="card" style="width: 75%; margin: auto;">
+        <div class="card-header">
+            <h4>Vehicule</h4>
+        </div>
+        <div class="card-body">
+            <div class="text-center mb-3">
+                @if (Model.Image != null)
+                {
+                    <img src="@Url.Action("GetImage", new { id = Model.VehiculeId })" alt="Vehicle Image" class="img-fluid" style="max-height: 300px; object-fit: cover;" />
+                }
+                else
+                {
+                    <span>No image</span>
+                }
+            </div>
+            <dl class="row">
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.Marque)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Marque)
+                </dd>
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.Modele)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Modele)
+                </dd>
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.Immatriculation)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Immatriculation)
+                </dd>
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.Utilisateur)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Utilisateur.UtilisateurId)
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="Edit" asp-route-id="@Model?.VehiculeId" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
